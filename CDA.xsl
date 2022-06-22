@@ -4169,7 +4169,35 @@
                             <td colspan="3">
                                 <xsl:for-each select="hl7:patient/hl7:languageCommunication">
                                     <div>
-                                        <xsl:value-of select="hl7:languageCode/@code"/>
+                                        <xsl:choose>
+                                            <xsl:when test="hl7:languageCode/@code = 'en-US'">
+                                                <xsl:text>English (en)</xsl:text>
+                                            </xsl:when>
+                                            <xsl:when test="hl7:languageCode/@code = 'es-MX'">
+                                                <xsl:text>Spanish (es)</xsl:text>
+                                            </xsl:when>
+                                            <xsl:when test="hl7:languageCode/@code = 'zh-CN'">
+                                                <xsl:text>Chinese (zh)</xsl:text>
+                                            </xsl:when>
+                                            <xsl:when test="hl7:languageCode/@code = 'fr-FR'">
+                                                <xsl:text>French (fr)</xsl:text>
+                                            </xsl:when>
+                                            <xsl:when test="hl7:languageCode/@code = 'ko-KR'">
+                                                <xsl:text>Korean (ko)</xsl:text>
+                                            </xsl:when>
+                                            <xsl:when test="hl7:languageCode/@code = 'de-DE'">
+                                                <xsl:text>German (de)</xsl:text>
+                                            </xsl:when>
+                                            <xsl:when test="hl7:languageCode/@code = 'ar-SA'">
+                                                <xsl:text>Arabic (ar)</xsl:text>
+                                            </xsl:when>
+                                            <xsl:when test="hl7:languageCode/@code = 'ru-RU'">
+                                                <xsl:text>Russian (ru)</xsl:text>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="hl7:languageCode/@code"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
                                         <xsl:if test="hl7:modeCode">
                                             <xsl:text>, </xsl:text>
                                             <xsl:call-template name="show-code-set">
